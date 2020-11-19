@@ -3,7 +3,7 @@ from yt_concate.model.found import Found
 
 
 class Search(Step):
-    def process(self, data, inputs, utils):
+    def process(self, data, inputs, utils, logger):
         search_word = inputs['search_word']
 
         found = []
@@ -17,6 +17,7 @@ class Search(Step):
                     time = captions[caption]
                     f = Found(yt, caption, time)
                     found.append(f)
-
-        print(len(found))
+                    # Found是新的物件 裡面會有yt, caption, time
+        # print(f'searching files: {len(found)}')
+        logger.info(f'searching files: {len(found)}')
         return found

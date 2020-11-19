@@ -37,3 +37,7 @@ class Utils:
     def get_output_filepath(self, channel_id, search_word):
         filename = channel_id + '_' + search_word + '.mp4'
         return os.path.join(OUTPUTS_DIR, filename)
+
+
+
+

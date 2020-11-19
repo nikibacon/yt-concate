@@ -6,12 +6,12 @@ class Pipeline:
         self.steps = steps
 
     # 不要笨笨的一個一個的去生成 可以用for loop
-    def run(self, inputs, utils):
+    def run(self, inputs, utils, logger):
         data = None
         for step in self.steps:
             try:
                 # 要接收上個步驟return的東西 接完在傳給下一個step ex.字幕()才拿得到list
-                data = step.process(data, inputs, utils)
+                data = step.process(data, inputs, utils, logger)
             except StepException as e:
                 print('Exception happened:', e)
                 break

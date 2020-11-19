@@ -5,7 +5,7 @@ from moviepy.editor import concatenate_videoclips
 
 
 class EditVideo(Step):
-    def process(self, data, inputs, utils):
+    def process(self, data, inputs, utils, logger):
         clips = []
         for found in data:
             if utils.video_file_exists(found.yt):
