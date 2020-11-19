@@ -16,7 +16,6 @@ class DownloadCaptions(Step):
         logger.info('downloading caption.......')
         # download the package by:  pip install pytube
         processes = []
-        cnt = 0
 
         with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executor:
             for yt in data:
@@ -24,7 +23,6 @@ class DownloadCaptions(Step):
                 # print('downloading caption for', yt.id)
                 if utils.caption_file_exists(yt):
                     logger.debug('found existing caption file' + str(yt.id))
-                    cnt += 1
                     # print('found existing caption file')
                     continue
                 process = executor.submit(self.download_captions, yt, utils, logger)
@@ -41,7 +39,7 @@ class DownloadCaptions(Step):
         logger.info(f'---------------downloading caption done....cost time: {str(end - start)} ,Caption files: {file_cnt}')
         return data
 
-    def download_captions(self, yt, utils, logger, cnt):
+    def download_captions(self, yt, utils, logger):
         try:
             source = YouTube(yt.url)
             en_caption = source.captions.get_by_language_code('en')
